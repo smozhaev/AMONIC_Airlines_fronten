@@ -1,0 +1,73 @@
+// Переменные
+$active-color: #d3fdd3;
+$inactive-color: #ffd6d6;
+$border-color: #000;
+$primary-font: Arial, sans-serif;
+
+.user-table-container {
+  width: 80%;
+  margin: 0 auto;
+  font-family: $primary-font;
+
+  .filter-container {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+
+    label {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    select {
+      padding: 5px;
+      border: 1px solid $border-color;
+      border-radius: 5px;
+    }
+  }
+
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    th,
+    td {
+      border: 1px solid $border-color;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      font-size: 16px;
+    }
+
+    .active-row {
+      background-color: $active-color;
+    }
+
+    .inactive-row {
+      background-color: $inactive-color;
+    }
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      padding: 10px 15px;
+      border: 1px solid $border-color;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+}
