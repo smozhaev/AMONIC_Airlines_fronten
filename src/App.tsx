@@ -1,15 +1,13 @@
-import './App.css'
-import AdminMenu from './pages/AdminMenu'
-import Login from './pages/Login/Login'
+import './App.css';
+import MainRouter from './components/MainRouter';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
-
   return (
-    <section>
-      <Login/>
-      <AdminMenu/>      
-    </section>
-  )
+    <AuthProvider>
+      <MainRouter/>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
