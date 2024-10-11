@@ -1,0 +1,65 @@
+.activity-container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    h1 {
+      text-align: center;
+      color: #003366;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+  
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 16px;
+      margin-bottom: 20px;
+  
+      .highlight {
+        font-weight: bold;
+        color: #003366;
+      }
+    }
+  
+    .activity-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+  
+      th,
+      td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+      }
+  
+      th {
+        background-color: #f0f0f0;
+        color: #333;
+      }
+  
+      tr:nth-child(odd) {
+        background-color: #f9f9f9;
+      }
+  
+      tr:nth-child(even) {
+        background-color: #d4f4d2;
+      }
+  
+      .crash-row {
+        background-color: #ffcccc;
+        font-weight: bold;
+  
+        td {
+          color: #ff0000;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,23 @@
+.btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &.add-user {
+      background-color: #28a745;
+      color: white;
+    }
+  
+    &.exit {
+      background-color: #dc3545; 
+      color: white;
+    }
+  
+    &:hover {
+      filter: brightness(0.9);
+    }
+}

@@ -1,11 +1,13 @@
-import './App.css';
+import './index.scss';
+import Header from './components/Header';
 import MainRouter from './components/MainRouter';
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <MainRouter/>
+    <AuthProvider>  
+        <Header/>
+        <MainRouter/>
     </AuthProvider>
   );
 }

@@ -7,6 +7,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
 
+  // useEffect(() => {
+  //   console.log('Обновленные токены:', accessToken, refreshToken);
+  // }, [accessToken, refreshToken]);
+
   const setTokens = (newAccessToken: string, newRefreshToken: string) => {
     setAccessToken(newAccessToken);
     setRefreshToken(newRefreshToken);

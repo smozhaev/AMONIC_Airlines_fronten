@@ -39,7 +39,7 @@ const Login: React.FC = () => {
       );
       const { accessToken, refreshToken } = response.data;
       setTokens(accessToken, refreshToken);
-      navigate('/menu_admin');
+      navigate('/admin_menu');
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response) {

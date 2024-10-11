@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f8f9fa;
+  background-color: white;
 
   .logo {
     text-align: center;
@@ -18,38 +18,32 @@
       letter-spacing: 2px; /* Межбуквенное расстояние */
       text-transform: uppercase; /* Преобразование текста в верхний регистр */
     }
-
-    .sub-title {
-      font-size: 24px; /* Размер текста подзаголовка */
-      font-family: 'Arial', sans-serif; /* Шрифт Arial */
-      color: #333; /* Цвет текста */
-      margin-top: 5px; /* Отступ сверху */
-    }
   }
 
   .login-form {
     background: #fff;
-    padding: 20px;
+    padding: 30px 40px; /* Увеличиваем отступы для улучшенного внешнего вида */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 320px; /* Увеличиваем ширину формы */
+    max-width: 100%; /* Защита от переполнения */
 
     .input-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
 
       label {
         display: block;
-        font-size: 14px;
+        font-size: 16px; /* Увеличиваем размер шрифта */
         color: #333;
-        margin-bottom: 5px;
+        margin-bottom: 8px; /* Увеличиваем нижний отступ для отделения от инпута */
       }
 
       input {
-        width: 100%;
-        padding: 10px;
+        width: calc(100% - 20px); /* Устанавливаем ширину с учетом padding */
+        padding: 10px 10px; /* Уменьшаем padding */
         border: 1px solid #ddd;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 16px; /* Увеличиваем размер текста */
         outline: none;
 
         &:focus {
@@ -62,18 +56,27 @@
       display: flex;
       justify-content: space-between;
 
-      .login-button {
-        padding: 10px 20px;
+      .login-button, .exit-button {
+        flex: 1; /* Устанавливаем одинаковую ширину кнопок */
+        padding: 10px 0; /* Уменьшаем вертикальные отступы */
+        margin: 0 5px; /* Добавляем внутренние отступы между кнопками */
         font-size: 14px;
         color: #fff;
-        background: #28a745;
         border: none;
         border-radius: 4px;
         cursor: pointer;
         transition: background 0.3s;
 
+        &:first-child {
+          margin-left: 0; /* Убираем левый отступ у первой кнопки */
+        }
+
+        &:last-child {
+          margin-right: 0; /* Убираем правый отступ у последней кнопки */
+        }
+
         &:hover {
-          background-color: #218838;
+          filter: brightness(0.9);
         }
 
         &:active {
@@ -81,23 +84,12 @@
         }
       }
 
+      .login-button {
+        background: #28a745;
+      }
+
       .exit-button {
-        padding: 10px 20px;
-        font-size: 14px;
-        color: #fff;
         background: #dc3545;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background 0.3s;
-
-        &:hover {
-          background-color: #c82333;
-        }
-
-        &:active {
-          transform: scale(0.98);
-        }
       }
     }
   }
