@@ -37,9 +37,15 @@ const Login: React.FC = () => {
             withCredentials: true,
         }
       );
-      const { accessToken, refreshToken } = response.data;
+      const { accessToken, refreshToken, roleId } = response.data;
       setTokens(accessToken, refreshToken);
-      navigate('/admin_menu');
+
+      if (roleId ===1) {
+        navigate('/admin_menu')
+      } else {
+        navigate('/menu')
+      };   
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response) {
