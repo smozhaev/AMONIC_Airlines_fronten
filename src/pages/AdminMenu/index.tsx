@@ -1,25 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './index.scss';
-import { User } from './types';
+import { User } from './types'
 
 const AdminMenu: React.FC = () => {
-
-  const [users] = useState<User[]>([
-    { id: 1, firstName: 'Peter', lastName: 'Severin', age: 40, role: 'administrator', email: 'peter.s@yahoo.com', office: 'Abu Dhabi', status: 'active' },
-    { id: 2, firstName: 'Henri', lastName: 'Kerasha', age: 24, role: 'office user', email: 'severin2007@gmail.com', office: 'Abu Dhabi', status: 'active' },
-    { id: 3, firstName: 'Olga', lastName: 'Navin', age: 65, role: 'office user', email: 'olga.olga@gmail.com', office: 'Bahrain', status: 'active' },
-    { id: 4, firstName: 'Henri', lastName: 'Morf', age: 34, role: 'administrator', email: 'h.morg@amonic.com', office: 'Doha', status: 'active' },
-    { id: 5, firstName: 'Mahan', lastName: 'Aliof', age: 45, role: 'office user', email: 'aliof1985@gmail.com', office: 'Bahrain', status: 'inactive' },
-    { id: 6, firstName: 'Iraj', lastName: 'Asadi', age: 37, role: 'administrator', email: 'asadi.iraji@amonic.com', office: 'Doha', status: 'inactive' }
-  ]);
-
+  const [users, setUsers] = useState<User[]>([]);
   const [selectedOffice, setSelectedOffice] = useState<string>('All offices');
+
+  const calculateAge = (birthDate: string) => {
+    const birth = new Date(birthDate);
+    const today = new Date();
+    const age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+      return age - 1;
+    }
+    return age;
+  };
+
+  const getRole = (roleId: number) => {
+    return roleId === 1 ? 'administrator' : 'office user';
+  };
+
+  useEffect(() => {
+    axios.get('/api/users')
+      .then((response) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const data = response.data.map((user: any) => ({
+          id: user.ID,
+          firstName: user.FirstName,
+          lastName: user.LastName,
+          age: calculateAge(user.BirthDate), 
+          role: getRole(user.RoleID), 
+          email: user.Email,
+          office: user.OfficeID, 
+          status: user.Active ? 'active' : 'inactive',
+        }));
+
+        data.sort((a: User, b: User) => a.office - b.office);
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.error("Ошибка при загрузке данных пользователей:", error);
+      });
+  }, []);
 
   const filteredUsers = selectedOffice === 'All offices' 
     ? users 
-    : users.filter(user => user.office === selectedOffice);
+    : users.filter(user => user.office.toString() === selectedOffice);
 
-  const offices = ['All offices', ...new Set(users.map(user => user.office))];
+  const offices = ['All offices', ...new Set(users.map(user => user.office.toString()))];
 
   return (
     <div className="user-table-container">
