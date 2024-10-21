@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './index.scss';
 import useGetUsers from '../../hooks/useGetUsers';
+import UserTableString from '../../components/UserTableString';
+import DisableLoginButton from '../../components/Buttons/DisableLoginButton';
+import EnableLoginButton from '../../components/Buttons/EnableLoginButton';
 
 const AdminMenu: React.FC = () => {
   const [users] = useGetUsers();
@@ -11,6 +14,17 @@ const AdminMenu: React.FC = () => {
     : users.filter(user => user.office.toString() === selectedOffice);
 
   const offices = ['All offices', ...new Set(users.map(user => user.office.toString()))];
+
+  const [selectedUserId, setSelectedUserId] = useState< number | null >(null);
+  const [selectedUserStatus, setSelectedUserStatus] = useState<string | null>(null);
+
+  const handleRowClick = (id: number) => {
+    setSelectedUserId(id === selectedUserId ? null : id )
+  }
+
+  const handleStatusClick = (status: string) => {
+    setSelectedUserStatus(status)
+  }
 
   return (
     <div className="user-table-container">
@@ -42,22 +56,30 @@ const AdminMenu: React.FC = () => {
         </thead>
         <tbody>
           {filteredUsers.map(user => (
-            <tr key={user.id} className={user.status === 'inactive' ? 'inactive-row' : 'active-row'}>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.age}</td>
-              <td>{user.role}</td>
-              <td>{user.email}</td>
-              <td>{user.office}</td>
-            </tr>
+            <UserTableString 
+              user={user}
+              isSelected={user.id === selectedUserId} 
+              onClick={() => {
+                handleRowClick(user.id);
+                handleStatusClick(user.status);
+              }}
+               
+            />
           ))}
         </tbody>
       </table>
 
-      <div className="buttons-container">
-        <button type="button" className="btn-change-role">Change Role</button>
-        <button type="button" className="btn-enable-disable">Enable/Disable Login</button>
-      </div>
+      { 
+        selectedUserStatus === null ?
+          <div className="buttons-container">
+            <button type="button" className="btn-change-role">Change Role</button>
+          </div>
+        :
+        <div className="buttons-container">
+          <button type="button" className="btn-change-role">Change Role</button>
+          {selectedUserStatus === 'active' ? <DisableLoginButton/> : <EnableLoginButton/>}
+        </div>
+      }
     </div>
   );
 };

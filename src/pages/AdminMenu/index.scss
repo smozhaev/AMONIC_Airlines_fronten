@@ -4,6 +4,7 @@ $inactive-color: #ffd6d6;
 $border-color: #000;
 $primary-font: Arial, sans-serif;
 
+
 .user-table-container {
   width: 80%;
   margin: 0 auto;
@@ -30,27 +31,46 @@ $primary-font: Arial, sans-serif;
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-
+  
     th,
     td {
       border: 1px solid $border-color;
       padding: 10px;
       text-align: left;
     }
-
+  
     th {
       background-color: #f4f4f4;
       font-size: 16px;
     }
-
+  
     .active-row {
       background-color: $active-color;
+  
+      &:hover {
+        background-color: lighten($active-color, 04%); 
+      }
     }
-
+  
     .inactive-row {
       background-color: $inactive-color;
+  
+      &:hover {
+        background-color: lighten($inactive-color, 03%); 
+      }
+    }
+
+    tr {
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+  
+    }
+
+    .selected-row {
+      filter: brightness(0.9);
     }
   }
+  
 
   .buttons-container {
     display: flex;
