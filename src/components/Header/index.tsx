@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './index.scss';
 import LogoutButton from '../Buttons/LogutButton';
-import AddUserButton from '../Buttons/AddUserButton';
+import AdminHeader from '../AdminHeader';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -11,8 +11,7 @@ const Header: React.FC = () => {
     <header className="header-container">
       {location.pathname === '/admin_menu' && (
         <div className="header-buttons">
-          <AddUserButton/>
-          <LogoutButton />
+          <AdminHeader/>
         </div>
       )}
       {location.pathname === '/menu' && (

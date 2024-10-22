@@ -1,14 +1,14 @@
 import './index.scss';
 
+interface IAddUserButton {
+  onClick: () => void;
+}
 
-const AddUserButton = () => {
+const AddUserButton: React.FC<IAddUserButton> = ({onClick}) => {
 
-    const handleAddUser = () => {
-        console.log("Добавление нового пользователя");
-    };
 
     return (
-      <button className="btn add-user" onClick={handleAddUser}>
+      <button className="btn add-user" onClick={onClick}>
         Add User
       </button>
     );

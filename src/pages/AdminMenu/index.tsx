@@ -8,15 +8,14 @@ import EnableLoginButton from '../../components/Buttons/EnableLoginButton';
 const AdminMenu: React.FC = () => {
   const [users] = useGetUsers();
   const [selectedOffice, setSelectedOffice] = useState<string>('All offices');
+  const [selectedUserId, setSelectedUserId] = useState< number | null >(null);
+  const [selectedUserStatus, setSelectedUserStatus] = useState<string | null>(null);
 
   const filteredUsers = selectedOffice === 'All offices' 
     ? users 
     : users.filter(user => user.office.toString() === selectedOffice);
 
   const offices = ['All offices', ...new Set(users.map(user => user.office.toString()))];
-
-  const [selectedUserId, setSelectedUserId] = useState< number | null >(null);
-  const [selectedUserStatus, setSelectedUserStatus] = useState<string | null>(null);
 
   const handleRowClick = (id: number) => {
     setSelectedUserId(id === selectedUserId ? null : id )
